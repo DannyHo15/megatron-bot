@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+logs/
+.pytest_cache/
+.omc
+.understand-anything
+docs
+IMPLEMENTATION_GUIDE.md
