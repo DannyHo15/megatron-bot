@@ -1,0 +1,22 @@
+2026-06-24 14:37:47,621 INFO === OptiBot KB sync started ===
+2026-06-24 14:37:48,322 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-24 14:37:48,976 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?page=2&per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-24 14:37:49,505 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?page=3&per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-24 14:37:50,104 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?page=4&per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-24 14:37:50,583 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?page=5&per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-24 14:37:50,584 INFO Scraped 401 articles
+2026-06-24 14:37:52,006 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?limit=100 "HTTP/1.1 200 OK"
+2026-06-24 14:37:53,626 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?after=file-XJnvfC9kSNnHn9HsK6urCX&limit=100 "HTTP/1.1 200 OK"
+2026-06-24 14:37:55,206 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?after=file-BcH47VStUiDJT9yqtL1s4D&limit=100 "HTTP/1.1 200 OK"
+2026-06-24 14:37:56,029 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?after=file-UCaWfET9A6B94oaXKbVRjn&limit=100 "HTTP/1.1 200 OK"
+2026-06-24 14:37:58,490 INFO Uploading 1 files with 8 workers
+2026-06-24 14:37:59,691 INFO HTTP Request: POST https://api.openai.com/v1/files "HTTP/1.1 200 OK"
+2026-06-24 14:38:00,797 INFO HTTP Request: POST https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files "HTTP/1.1 200 OK"
+2026-06-24 14:38:01,344 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files/file-9qjnSAnsUNn98ECJXBhTe3 "HTTP/1.1 200 OK"
+2026-06-24 14:38:02,865 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files/file-9qjnSAnsUNn98ECJXBhTe3 "HTTP/1.1 200 OK"
+2026-06-24 14:38:04,354 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files/file-9qjnSAnsUNn98ECJXBhTe3 "HTTP/1.1 200 OK"
+2026-06-24 14:38:05,982 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files/file-9qjnSAnsUNn98ECJXBhTe3 "HTTP/1.1 200 OK"
+2026-06-24 14:38:07,517 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files/file-9qjnSAnsUNn98ECJXBhTe3 "HTTP/1.1 200 OK"
+2026-06-24 14:38:09,014 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files/file-9qjnSAnsUNn98ECJXBhTe3 "HTTP/1.1 200 OK"
+2026-06-24 14:38:09,021 INFO RESULT: {'added': 1, 'updated': 0, 'skipped': 400, 'removed': 0} | chunks_embedded=1
+2026-06-24 14:38:09,021 INFO === done ===

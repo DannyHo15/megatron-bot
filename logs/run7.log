@@ -1,0 +1,14 @@
+2026-06-24 15:37:24,855 INFO === OptiBot KB sync started ===
+2026-06-24 15:37:25,724 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-24 15:37:26,743 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?page=2&per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-24 15:37:27,607 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?page=3&per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-24 15:37:28,285 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?page=4&per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-24 15:37:29,011 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?page=5&per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-24 15:37:29,012 INFO Scraped 401 articles
+2026-06-24 15:37:31,148 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?limit=100 "HTTP/1.1 200 OK"
+2026-06-24 15:37:33,200 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?after=file-CFf9AXL8S1gQbRnkCy7YeY&limit=100 "HTTP/1.1 200 OK"
+2026-06-24 15:37:34,419 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?after=file-LJ9gn8sqcxPapF9BhQ6PRU&limit=100 "HTTP/1.1 200 OK"
+2026-06-24 15:37:35,850 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?after=file-T8hNRdjjWBdVjvaLgz5UAP&limit=100 "HTTP/1.1 200 OK"
+2026-06-24 15:37:37,087 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?after=file-7rshY3sXVySq6Jtw554bEy&limit=100 "HTTP/1.1 200 OK"
+2026-06-24 15:37:39,343 INFO RESULT: {'added': 0, 'updated': 0, 'skipped': 401, 'removed': 0} | chunks_embedded=0
+2026-06-24 15:37:39,343 INFO === done ===

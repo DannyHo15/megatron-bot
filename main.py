@@ -2,7 +2,7 @@ import os
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from src import config, delta, markdownifier, scraper, state as state_mod, utils, vector_store
+from src import config, delta, markdownifier, runlog, scraper, state as state_mod, utils, vector_store
 
 log = utils.configure_logging()
 
@@ -94,6 +94,12 @@ def run() -> int:
 
     state_mod.save(snapshot)
     log.info("RESULT: %s | chunks_embedded=%d", counts, chunks_embedded)
+
+    # Best-effort: publish a public-readable artefact so reviewers can see the
+    # last run without DigitalOcean / Better Stack credentials. Internal
+    # try/except — a failure here will NOT change the job's exit code.
+    runlog.publish_run_log(counts, chunks_embedded, scraped=len(remote_articles))
+
     log.info("=== done ===")
     return 0
 

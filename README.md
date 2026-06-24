@@ -62,22 +62,23 @@ Default OpenAI static chunking: `max_chunk_size_tokens=800`, `chunk_overlap_toke
 
 - **Parallel uploads** — `ThreadPoolExecutor` with 8 workers (tunable via `MAX_UPLOAD_WORKERS`). Drops a fresh-load run from ~80 min to ~10 min by overlapping the per-file embedding wait.
 - **Zendesk retry** — `_get_with_retry()` honors `Retry-After` on 429 and uses exponential backoff for 5xx, capped at 5 attempts. Required because Zendesk rate-limits cloud IPs aggressively (we hit this on DigitalOcean during the first deploy).
+- **OpenAI 404 race** — under parallel load, the post-attach poll occasionally races with eventual consistency and returns 404 for a file that was just created. `vector_store.upload()` retries up to 3 times with backoff and deletes the orphan Files-API object before each retry to avoid leaks.
 
 ## Daily job logs
 
-DigitalOcean App Platform → Scheduled Job → click a run under **Activity** (Jobs don't appear under Runtime Logs).
+Each scheduled run pushes a public artefact (counts + timestamp) to the `logs` branch of this repo — open without login:
 
-- Live URL (DO project members only): `<paste DO run URL after deploy>`
-- For reviewers without DO access: see [`publics/do-logs.png`](publics/do-logs.png) and archived local runs under [`logs/`](logs/).
+- **Last run**: https://github.com/DannyHo15/megatron-bot/blob/logs/runs/latest.log
+- **History**: https://github.com/DannyHo15/megatron-bot/tree/logs/runs
 
-[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/DannyHo15/megatron-bot/tree/main)
+Behind the scenes the runtime stdout is also forwarded to Better Stack (live tail). For reviewers without team access: see [`publics/do-logs.png`](./publics/do-logs.png) or `publics/betterstack-live-tail.png`. Forwarding is plumbing; the GitHub artefact above is the source of truth for reviewers.
 
 ## Sanity check
 
-Playground question: *"How do I add a YouTube video?"* — the Assistant replies with answer + `Article URL:` citations.
+Playground question: _"How do I add a YouTube video?"_ — the Assistant replies with answer + `Article URL:` citations.
 
 ![answer](./publics/playground-answer.png)
 
 ## Tests
 
-`pytest -q` — 15 tests covering: slug stability, markdown cleaning (script/nav decompose), delta classification, chunk-count estimate, Zendesk 429/5xx retry.
+`pytest -q` — 18 tests covering: slug stability, markdown cleaning (script/nav decompose), delta classification, chunk-count estimate, Zendesk 429/5xx retry, OpenAI 404 race retry with orphan cleanup.
