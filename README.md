@@ -71,7 +71,7 @@ Each scheduled run pushes a public artefact (counts + timestamp) to the `logs` b
 - **Last run**: https://github.com/DannyHo15/megatron-bot/blob/logs/runs/latest.log
 - **History**: https://github.com/DannyHo15/megatron-bot/tree/logs/runs
 
-Behind the scenes the runtime stdout is also forwarded to Better Stack (live tail). For reviewers without team access: see [`publics/do-logs.png`](./publics/do-logs.png) or `publics/betterstack-live-tail.png`. Forwarding is plumbing; the GitHub artefact above is the source of truth for reviewers.
+Behind the scenes the runtime stdout is also forwarded to Better Stack (live tail). For reviewers without team access: see [`publics/do-logs.png`](./publics/do-logs.png) or [`publics/betterstack-live-tail.png`](./publics/betterstack-live-tail.png). Forwarding is plumbing; the GitHub artefact above is the source of truth for reviewers.
 
 ## Sanity check
 
