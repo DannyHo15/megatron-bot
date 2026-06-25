@@ -2,7 +2,7 @@ import logging
 import math
 import time
 
-from openai import NotFoundError, OpenAI
+from openai import APIConnectionError, APITimeoutError, InternalServerError, NotFoundError, OpenAI
 
 from . import config
 
@@ -18,7 +18,17 @@ CHUNK_OVERLAP_TOKENS = 400
 # successfully created. SDK doesn't retry 4xx by default — we do it ourselves.
 UPLOAD_MAX_ATTEMPTS = 3
 
-client = OpenAI(api_key=config.OPENAI_API_KEY)
+# load_remote_state is the most critical entry point — without it, delta logic
+# can't run. Wrap with longer backoff (10s/30s/60s) on top of the SDK's own
+# short-burst retries, because OpenAI's "System is overloaded" 503s typically
+# last minutes, not seconds, and observably hit our daily window.
+LOAD_STATE_MAX_ATTEMPTS = 3
+LOAD_STATE_BACKOFF_SECONDS = (10, 30, 60)
+_TRANSIENT_OPENAI_ERRORS = (InternalServerError, APIConnectionError, APITimeoutError)
+
+# Bump SDK auto-retry from default 2 → 5 to ride out short transient blips
+# before the longer app-level retry on load_remote_state kicks in.
+client = OpenAI(api_key=config.OPENAI_API_KEY, max_retries=5)
 
 
 def load_remote_state() -> dict:
@@ -27,6 +37,25 @@ def load_remote_state() -> dict:
     Makes the daily job stateless — no persisted articles.json needed across runs.
     Returns: { article_id: {"hash", "url", "file_id"} }
     """
+    last_err: Exception | None = None
+    for attempt in range(LOAD_STATE_MAX_ATTEMPTS):
+        try:
+            return _load_remote_state_inner()
+        except _TRANSIENT_OPENAI_ERRORS as e:
+            last_err = e
+            if attempt + 1 >= LOAD_STATE_MAX_ATTEMPTS:
+                break
+            wait = LOAD_STATE_BACKOFF_SECONDS[attempt]
+            log.warning(
+                "load_remote_state attempt %d/%d failed (%s) — sleeping %ds",
+                attempt + 1, LOAD_STATE_MAX_ATTEMPTS, type(e).__name__, wait,
+            )
+            time.sleep(wait)
+    assert last_err is not None
+    raise last_err
+
+
+def _load_remote_state_inner() -> dict:
     state: dict = {}
     after: str | None = None
     while True:

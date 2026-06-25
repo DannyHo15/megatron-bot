@@ -1,0 +1,20 @@
+2026-06-25 03:26:59,798 INFO === OptiBot KB sync started ===
+2026-06-25 03:27:00,759 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-25 03:27:01,674 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?page=2&per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-25 03:27:02,515 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?page=3&per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-25 03:27:03,047 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?page=4&per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-25 03:27:03,458 INFO HTTP Request: GET https://support.optisigns.com/api/v2/help_center/en-us/articles.json?page=5&per_page=100&sort_by=updated_at&sort_order=desc "HTTP/1.1 200 OK"
+2026-06-25 03:27:03,459 INFO Scraped 402 articles
+2026-06-25 03:27:05,833 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?limit=100 "HTTP/1.1 200 OK"
+2026-06-25 03:27:07,330 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?after=file-CJ1oEBLAtgia7h9UvECa8N&limit=100 "HTTP/1.1 200 OK"
+2026-06-25 03:27:08,623 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?after=file-2z2D7LPKpi6XvUCkq52HCq&limit=100 "HTTP/1.1 200 OK"
+2026-06-25 03:27:10,176 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?after=file-KVGY7Bjz2SEPhArWMB5cp6&limit=100 "HTTP/1.1 200 OK"
+2026-06-25 03:27:11,457 INFO HTTP Request: GET https://api.openai.com/v1/vector_stores/vs_6a3b93acd79c8191977a853e26a013fb/files?after=file-BxGWST2vdKvqA6C9SYgKix&limit=100 "HTTP/1.1 200 OK"
+2026-06-25 03:27:13,718 INFO RESULT: {'added': 0, 'updated': 0, 'skipped': 402, 'removed': 0} | chunks_embedded=0
+2026-06-25 03:27:14,210 INFO HTTP Request: GET https://api.github.com/repos/DannyHo15/megatron-bot/git/ref/heads/logs "HTTP/1.1 200 OK"
+2026-06-25 03:27:14,596 INFO HTTP Request: GET https://api.github.com/repos/DannyHo15/megatron-bot/contents/runs/latest.log?ref=logs "HTTP/1.1 200 OK"
+2026-06-25 03:27:15,703 INFO HTTP Request: PUT https://api.github.com/repos/DannyHo15/megatron-bot/contents/runs/latest.log "HTTP/1.1 200 OK"
+2026-06-25 03:27:16,029 INFO HTTP Request: GET https://api.github.com/repos/DannyHo15/megatron-bot/contents/runs/2026-06-25T03-27-13Z.log?ref=logs "HTTP/1.1 404 Not Found"
+2026-06-25 03:27:17,037 INFO HTTP Request: PUT https://api.github.com/repos/DannyHo15/megatron-bot/contents/runs/2026-06-25T03-27-13Z.log "HTTP/1.1 201 Created"
+2026-06-25 03:27:17,038 INFO [runlog] published -> https://github.com/DannyHo15/megatron-bot/blob/logs/runs/latest.log
+2026-06-25 03:27:17,039 INFO === done ===
