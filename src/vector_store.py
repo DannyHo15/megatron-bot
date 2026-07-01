@@ -117,13 +117,22 @@ def upload(path, *, article_id: str, content_hash: str, url: str) -> str:
 
 
 def delete(file_id: str) -> None:
-    """Detach from the vector store and delete the underlying file."""
+    """Detach from the vector store and delete the underlying file.
+
+    Idempotent: if the file was already removed by a parallel worker
+    (concurrent uploads race on the same prev_file_id), the 404 is
+    swallowed instead of failing the whole sync.
+    """
     try:
         client.vector_stores.files.delete(
             vector_store_id=config.VECTOR_STORE_ID, file_id=file_id
         )
-    finally:
+    except NotFoundError:
+        log.info("vector store file %s already detached", file_id)
+    try:
         client.files.delete(file_id)
+    except NotFoundError:
+        log.info("file %s already deleted", file_id)
 
 
 def estimate_chunks(text: str) -> int:
